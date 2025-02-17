@@ -14,3 +14,6 @@ const io = new Server(server,{
 
 app.use(cors());
 app.use(express.json());
+
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_API_URL = 'https://api.groq.com/v1/chat/completions';
