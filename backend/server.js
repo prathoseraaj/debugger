@@ -20,7 +20,14 @@ const GROQ_API_URL = 'https://api.groq.com/v1/chat/completions';
 
 app.post('/debug',async(requestAnimationFrame,res)=>{
     try{
+        const {code,language} = req.body;
 
+        const prompt = `Debug the following ${language} code and suggest improvements:\n\n${code}`;
+        const response = await axios.post(GROQ_API_URL,{
+            model: 'llama3-8b-8192',
+            messages: [{ role: 'user', content: prompt }],
+            max_tokens: 300,
+        })
     }
     catch(error){
 
