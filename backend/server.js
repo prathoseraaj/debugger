@@ -36,6 +36,7 @@ app.post('/debug',async(requestAnimationFrame,res)=>{
 
     }
     catch(error){
-
+        console.error(error);
+        res.status(500).json({ error: 'Error processing request' });
     }
-})
+});
