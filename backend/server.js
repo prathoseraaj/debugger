@@ -4,6 +4,7 @@ const {server} = require('server');
 const http = require('http');
 const dotenv = require('dotenv');
 const axios = require('axios');
+const { header } = require('server/reply');
 
 dotenv.config()
 
@@ -27,7 +28,12 @@ app.post('/debug',async(requestAnimationFrame,res)=>{
             model: 'llama3-8b-8192',
             messages: [{ role: 'user', content: prompt }],
             max_tokens: 300,
-        })
+        },{
+            header: {Autorization: `Bearer ${GROQ_API_KEY}`}
+        });
+        
+        res.json({output: response.data.choices[0].messages.content});
+
     }
     catch(error){
 
