@@ -59,7 +59,11 @@ io.on('connection',(socket)=>{
               socket.emit('debug_result', response.data.choices[0].message.content);                    
         }
         catch(error){
-
+            console.error(error);
+            socket.emit('debug_result', 'Error processing request');
         }
-    })
-})
+    });
+
+    socket.on('disconnect', () => console.log('User disconnected:', socket.id));
+
+});
