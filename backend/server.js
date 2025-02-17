@@ -5,6 +5,7 @@ const http = require('http');
 const dotenv = require('dotenv');
 const axios = require('axios');
 const { header } = require('server/reply');
+const { socket } = require('server/router');
 
 dotenv.config()
 
@@ -40,3 +41,16 @@ app.post('/debug',async(requestAnimationFrame,res)=>{
         res.status(500).json({ error: 'Error processing request' });
     }
 });
+
+io.on('connection',(socket)=>{
+    console.log('User connected:', socket.id);
+
+    socket.on('debug_code',async({code,language})=>{
+        try{
+
+        }
+        catch(error){
+
+        }
+    })
+})
