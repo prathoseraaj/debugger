@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import './App.css'; // Make sure to import the CSS file
 
 const socket = io('http://localhost:5000'); // Connect to backend server
@@ -79,7 +80,7 @@ const App = () => {
         <h2>Debug Result:</h2>
         {loading ? 
           <p className="loading-indicator">Analyzing your code...</p> : 
-          debugResult && <pre>{debugResult}</pre>
+          debugResult && <ReactMarkdown className="debug-result" children={debugResult} />
         }
       </div>
     </div>
