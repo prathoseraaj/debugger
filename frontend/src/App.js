@@ -4,7 +4,7 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import './App.css'; // Make sure to import the CSS file
 
-const socket = io('http://localhost:5000'); // Connect to backend server
+const socket = io(process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000');
 
 const App = () => {
   const [code, setCode] = useState('');
